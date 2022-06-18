@@ -17,12 +17,34 @@ string rtrim(const string &);
 int pageCount(int numberOfPages, int desiredPage) {
     vector <int> book;
     int minPagesTurned = 0;
+    bool lastPageBlank = false;
+    int blankPage = 404;
 
     // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
+    if ((numberOfPages + 1) % 2) {
+        lastPageBlank = true;
+    }
 
-    // if (lastPageBlank), vectorSize (of index 0) must be numberOfPages + 1. The plus one is the blank page at the back.
+    // if (lastPageBlank), vectorSize (of index 0) must be numberOfPages + 1.
+    // The plus one is the blank page at the back.
 
     //Create a vector of book [zero index] with of either size n or n+1
+    for (int i = 0; i <= numberOfPages; i++) {
+        if (i == 0) {
+            book.push_back(blankPage); //Page 0 is always blank.
+        }
+
+        if (i != 0 && i != numberOfPages) {
+            book.push_back(i); //Pushing all pages from 1 - (n-1). 
+        }
+
+        if (lastPageBlank) {
+            if (i == numberOfPages) {
+                book.push_back(i); //Last real page
+                book.push_back(blankPage); //Add blank page at the end
+            }
+        }
+    }
 
     //Starting at the front of the book:
     //set index to front, check if the page being looked for is either i or i+1.
