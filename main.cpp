@@ -14,17 +14,28 @@ string rtrim(const string &);
  *  2. INTEGER p
  */
 
-int pageCount(int numberPages, int desiredPage) {
+int pageCount(int numberOfPages, int desiredPage) {
+    vector <int> book;
+    int minPagesTurned = 0;
 
-    //Build a double linked list that connects some number of arrays of size 2.
+    // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
 
-    //Allow for traversal from the first and last element. (Need a forward and reverse method).
+    // if (lastPageBlank), vectorSize (of index 0) must be numberOfPages + 1. The plus one is the blank page at the back.
 
-    //Every time you traverse from one array to the next, increment our pagesTurned.
+    //Create a vector of book [zero index] with of either size n or n+1
+
+    //Starting at the front of the book:
+    //set index to front, check if the page being looked for is either i or i+1.
+    // If not, flip through pages 2 at a time. incrementing a pagedFlipped counter.
+
+    //Starting at the back of the book:
+    //set index to end of vector. Check if the page being looked for is either at i or i-1.
+    //If not, flip back 2 pages at a time, incrementing a reversePageFlipped counter.
 
     //Compare pagesTurned starting at the front of the book vs. pages turned starting at the back of the book.
 
     //Whichever method has the least number of pages turned, return that value.
+    return minPagesTurned;
 }
 
 int main()
