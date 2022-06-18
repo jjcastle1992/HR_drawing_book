@@ -21,7 +21,7 @@ int pageCount(int numberOfPages, int desiredPage) {
     int blankPage = 404;
 
     // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
-    if ((numberOfPages + 1) % 2) {
+    if ((numberOfPages % 2) == 0 ) {
         lastPageBlank = true;
     }
 
@@ -34,8 +34,8 @@ int pageCount(int numberOfPages, int desiredPage) {
             book.push_back(blankPage); //Page 0 is always blank.
         }
 
-        if (i != 0 && i != numberOfPages) {
-            book.push_back(i); //Pushing all pages from 1 - (n-1). 
+        if (i != 0 && !lastPageBlank) {
+            book.push_back(i); //Pushing all pages from 1 to n OR 1 to (n-1) if last page should be blank.
         }
 
         if (lastPageBlank) {
