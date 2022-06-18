@@ -19,6 +19,11 @@ int pageCount(int numberOfPages, int desiredPage) {
     int minPagesTurned = 0;
     bool lastPageBlank = false;
     int blankPage = 404;
+    int forwardPagesFlipped = 0;
+    int reversePagesFlipped = 0;
+    int currentPage = 0;
+    int nextPage = 0;
+    bool pageFound = false;
 
     // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
     if ((numberOfPages % 2) == 0 ) {
@@ -31,11 +36,18 @@ int pageCount(int numberOfPages, int desiredPage) {
     //Create a vector of book [zero index] with of either size n or n+1
     for (int i = 0; i <= numberOfPages; i++) {
         if (i == 0) {
-            book.push_back(blankPage); //Page 0 is always blank.
+            book.push_back(0); //Page 0 is always blank.
         }
 
-        if (i != 0 && !lastPageBlank) {
-            book.push_back(i); //Pushing all pages from 1 to n OR 1 to (n-1) if last page should be blank.
+        if (i != 0) {
+            if (!lastPageBlank) {
+                book.push_back(i); //Pushing all pages from 1 to n
+            }
+            else {
+                if ( i != numberOfPages) {
+                    book.push_back(i); //Pushing all pages from 1 to (n-1) if last page should be blank.
+                }
+            }
         }
 
         if (lastPageBlank) {
@@ -49,6 +61,21 @@ int pageCount(int numberOfPages, int desiredPage) {
     //Starting at the front of the book:
     //set index to front, check if the page being looked for is either i or i+1.
     // If not, flip through pages 2 at a time. incrementing a pagedFlipped counter.
+    bool endOfBook = false;
+    while ((!pageFound) && (!endOfBook) ) {
+        currentPage = book[currentPage];
+        nextPage = book[currentPage + 1];
+        if (nextPage == 404) {
+            endOfBook = true;
+        }
+        if (currentPage == desiredPage || nextPage == desiredPage) {
+            pageFound = true;
+        }
+        else {
+            forwardPagesFlipped++;
+            currentPage += 2;
+        }
+    }
 
     //Starting at the back of the book:
     //set index to end of vector. Check if the page being looked for is either at i or i-1.
