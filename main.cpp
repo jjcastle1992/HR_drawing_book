@@ -99,6 +99,12 @@ int pageCount(int numberOfPages, int desiredPage) {
         }
     }
     //Compare pagesTurned starting at the front of the book vs. pages turned starting at the back of the book.
+    if (reversePagesFlipped < forwardPagesFlipped) {
+        minPagesTurned = reversePagesFlipped;
+    }
+    else {
+        minPagesTurned = forwardPagesFlipped;
+    }
 
     //Whichever method has the least number of pages turned, return that value.
     return minPagesTurned;
