@@ -25,6 +25,8 @@ int pageCount(int numberOfPages, int desiredPage) {
     int nextPage = 0;
     int prevPage = 0;
     bool pageFound = false;
+    bool endOfBook = false;
+    bool beginningOfBook = false;
 
     // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
     if ((numberOfPages % 2) == 0 ) {
@@ -62,9 +64,8 @@ int pageCount(int numberOfPages, int desiredPage) {
     //Starting at the front of the book:
     //set index to front, check if the page being looked for is either i or i+1.
     // If not, flip through pages 2 at a time. incrementing a pagedFlipped counter.
-    bool endOfBook = false;
+
     while ((!pageFound) && (!endOfBook) ) {
-        currentPage = book[currentPage];
         nextPage = book[currentPage + 1];
         if (nextPage == 404) {
             endOfBook = true;
@@ -82,11 +83,9 @@ int pageCount(int numberOfPages, int desiredPage) {
     //set index to end of vector. Check if the page being looked for is either at i or i-1.
     //If not, flip back 2 pages at a time, incrementing a reversePageFlipped counter.
     pageFound = false;
-    bool beginningOfBook = false;
-    currentPage = book.size();
+    currentPage = (book.size() - 1);
 
     while ((!pageFound) && (!beginningOfBook) ) {
-        currentPage = book[currentPage];
         prevPage = book[currentPage - 1];
         if (prevPage == 404) {
            beginningOfBook = true;
