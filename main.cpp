@@ -123,11 +123,12 @@ int main()
     getline(cin, p_temp);
 
     int p = stoi(ltrim(rtrim(p_temp)));
+    if ((n >= 1 && n <= 1e5) && (p >= 1 && p <= n)) {
+        int result = pageCount(n, p);
 
-    int result = pageCount(n, p);
-
-    fout << result << "\n";
-
+        fout << result << "\n";
+    }
+    
     fout.close();
 
     return 0;
