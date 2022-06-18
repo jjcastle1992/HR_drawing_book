@@ -14,8 +14,17 @@ string rtrim(const string &);
  *  2. INTEGER p
  */
 
-int pageCount(int n, int p) {
+int pageCount(int numberPages, int desiredPage) {
 
+    //Build a double linked list that connects some number of arrays of size 2.
+
+    //Allow for traversal from the first and last element. (Need a forward and reverse method).
+
+    //Every time you traverse from one array to the next, increment our pagesTurned.
+
+    //Compare pagesTurned starting at the front of the book vs. pages turned starting at the back of the book.
+
+    //Whichever method has the least number of pages turned, return that value.
 }
 
 int main()
