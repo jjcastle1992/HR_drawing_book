@@ -23,6 +23,7 @@ int pageCount(int numberOfPages, int desiredPage) {
     int reversePagesFlipped = 0;
     int currentPage = 0;
     int nextPage = 0;
+    int prevPage = 0;
     bool pageFound = false;
 
     // if numberOfPages (with an index of 0) is divisible by 2, there must be a "blank page" at the end of the book.
@@ -80,7 +81,24 @@ int pageCount(int numberOfPages, int desiredPage) {
     //Starting at the back of the book:
     //set index to end of vector. Check if the page being looked for is either at i or i-1.
     //If not, flip back 2 pages at a time, incrementing a reversePageFlipped counter.
+    pageFound = false;
+    bool beginningOfBook = false;
+    currentPage = book.size();
 
+    while ((!pageFound) && (!beginningOfBook) ) {
+        currentPage = book[currentPage];
+        prevPage = book[currentPage - 1];
+        if (prevPage == 404) {
+           beginningOfBook = true;
+        }
+        if (currentPage == desiredPage || prevPage == desiredPage) {
+            pageFound = true;
+        }
+        else {
+            reversePagesFlipped++;
+            currentPage -= 2;
+        }
+    }
     //Compare pagesTurned starting at the front of the book vs. pages turned starting at the back of the book.
 
     //Whichever method has the least number of pages turned, return that value.
